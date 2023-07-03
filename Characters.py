@@ -26,7 +26,7 @@ class Player(pg.sprite.Sprite):
         self.surf = pg.image.load("car.png").convert()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         self.surf = pg.transform.scale(self.surf, (75, 25))
-        self.rect = self.surf.get_rect()
+        self.rect = self.surf.get_rect(center=(0, SCREEN_HEIGHT/2))
 
     def update_player(self, pressed_keys):
         if pressed_keys[K_UP]:
@@ -49,10 +49,8 @@ class Player(pg.sprite.Sprite):
 
 
 class Enemy(pg.sprite.Sprite):
-    def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT):
+    def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT, t):
         super().__init__()
-        #self.surf = pg.Surface((20, 10))
-        #self.surf.fill((255, 255, 255))
         self.surf = pg.image.load("cone.png").convert()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         self.surf = pg.transform.scale(self.surf, (75, 75))
@@ -62,7 +60,7 @@ class Enemy(pg.sprite.Sprite):
                 random.randint(0, SCREEN_HEIGHT)
             )
         )
-        self.speed = random.randint(1, 3) * pg.time.get_ticks() / 5000
+        self.speed = random.randint(1, 3) * (t / 20 + 0.25)
 
     def update(self):
         self.rect.move_ip(-self.speed, 0)

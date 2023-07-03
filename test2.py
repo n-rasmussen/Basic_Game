@@ -1,19 +1,18 @@
-
-class Test():
-    def __init__(self, name):
-        self.name = name
+import time as time
 
 
-class Teacher(Test):
-    def __init__(self, subject):
-        super(Teacher, self).__init__(subject)
-        self.subject = subject
-        self.speed = 20
+class Stopwatch():
+    def __int__(self, start):
+        self._start = start
+
+    def get_seconds(self):
+        return int(time.time() - self._start)
 
 
-person = Teacher("French")
-person.name = "bob"
-
-print(person.name)
-print(person.subject)
-print(person.speed)
+clock = Stopwatch()
+clock._start = time.time()
+print(clock._start)
+time.sleep(3)
+print(clock.get_seconds())
+clock._start = time.time()
+print(clock.get_seconds())
