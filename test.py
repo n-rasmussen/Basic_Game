@@ -67,7 +67,7 @@ def run_game():  # main Game Loop
 
         enemies.update()
 
-        screen.fill((0, 0, 0))  # paints screen Black
+        screen.fill((150, 150, 150))  # paints screen Black
 
         for entity in all_sprites:
             screen.blit(entity.surf, entity.rect)
