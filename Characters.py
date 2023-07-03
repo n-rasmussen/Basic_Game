@@ -29,7 +29,7 @@ class Player(pg.sprite.Sprite):
         self.rect = self.surf.get_rect(center=(0, SCREEN_HEIGHT/2))  # draws the rectangle for the shape at location
 
     def update_player(self, pressed_keys):  # Method to move the player with arrow key press
-        if pressed_keys[K_UP]:
+        if pressed_keys[K_UP]:  # takes input from key.get_pressed
             self.rect.move_ip(0, -1)
         if pressed_keys[K_DOWN]:
             self.rect.move_ip(0, 1)

@@ -58,27 +58,27 @@ def run_game():  # main Game Loop
                 enemies.add(new_enemy)
                 all_sprites.add(new_enemy)
 
-            if event.type == timer:  # if event is timer, add 1s to the displayed timer
+            if event.type == timer:  # if event is timer, add 1 sec to the displayed timer
                 counter += 1
                 text = str(counter)
 
-        pressed_keys = pg.key.get_pressed()  #
-        player.update_player(pressed_keys)
+        pressed_keys = pg.key.get_pressed()  # get state of all keyboard buttons
+        player.update_player(pressed_keys)  # puts keyboard states into the player method to move player
 
-        enemies.update()
+        enemies.update()  # moves the enemies
 
         screen.fill((150, 150, 150))  # paints screen Black
 
         for entity in all_sprites:
-            screen.blit(entity.surf, entity.rect)
+            screen.blit(entity.surf, entity.rect)  # puts all the Sprites on the screen
 
-        if pg.sprite.spritecollideany(player, enemies):
-            player.kill()
-            break
+        if pg.sprite.spritecollideany(player, enemies):  # if the player collides with an enemy
+            player.kill()  # Kill Player
+            break  # break game loop to go to menu screen
 
-        screen.blit(font.render(text, True, (255, 255, 255)), (SCREEN_WIDTH - 50, 10))
+        screen.blit(font.render(text, True, (255, 255, 255)), (SCREEN_WIDTH - 50, 10))  # display the timer on screen
 
-        pg.display.flip()
+        pg.display.flip()  # send the screen output to monitor
 
     return text
 
